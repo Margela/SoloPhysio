@@ -1,34 +1,37 @@
-package com.example.margelanoryaly.solophysio;
+package com.google.firebase.codelab.image_labeling;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class RegisterActivity extends AppCompatActivity {
     DatabaseHelper db;
-    EditText mTextUsername;
+    EditText mTextName;
+    EditText mTextSurname;
+    EditText mTextEmail;
     EditText mTextPassword;
     EditText mTextcnfpassword;
     Button mButtonregister;
-    TextView mTextViewLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.signuppage);
 
         db = new DatabaseHelper(this);
-        mTextUsername = (EditText) findViewById(R.id.edittext_Username);
+        mTextName = (EditText) findViewById(R.id.edittext_Name);
+        mTextSurname = (EditText) findViewById(R.id.edittext_Surname);
         mTextPassword = (EditText) findViewById(R.id.edittext_Password);
         mTextcnfpassword = (EditText) findViewById(R.id.edittext_cnf_password);
+        mTextEmail = (EditText) findViewById(R.id.edittext_Email);
         mButtonregister = (Button) findViewById(R.id.button_register);
-        mTextViewLogin = (TextView) findViewById(R.id.textview_login);
-        mTextViewLogin.setOnClickListener(new View.OnClickListener() {
+        mButtonregister.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 Intent LoginIntent = new Intent(RegisterActivity.this, LoginPage.class);
@@ -39,9 +42,10 @@ public class RegisterActivity extends AppCompatActivity {
         mButtonregister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String user = mTextUsername.getText().toString().trim();
+                String user = mTextName.getText().toString().trim();
                 String pwd = mTextPassword.getText().toString().trim();
                 String cnf_pwd = mTextcnfpassword.getText().toString().trim();
+
                 if (pwd.equals((cnf_pwd))) {
                     long val = db.addUser(user, pwd);
                     if (val > 0) {
@@ -65,5 +69,5 @@ public class RegisterActivity extends AppCompatActivity {
 
 
 
-}
+    }
 }

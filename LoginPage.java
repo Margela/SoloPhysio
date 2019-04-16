@@ -1,12 +1,14 @@
-package com.example.margelanoryaly.solophysio;
+package com.google.firebase.codelab.image_labeling;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginPage  extends AppCompatActivity {
 
@@ -43,7 +45,12 @@ public class LoginPage  extends AppCompatActivity {
                 String pwd = mTextPassword.getText().toString().trim();
                 Boolean res = db.checkUser(user, pwd);
                 if (res == true) {
-                    Toast.makeText(LoginPage.this, "Succesfully Logged In", Toast.LENGTH_SHORT).show();
+                  /*  Toast.makeText(LoginPage.this, "Succesfully Logged In", Toast.LENGTH_SHORT).show();
+                    Intent homepageIntent = new Intent(LoginPage.this, homepage.class);
+                    startActivity(homepageIntent); */
+                    Intent homepageIntent = new Intent(LoginPage.this, homepage.class);
+                    startActivity(homepageIntent);
+
                 } else {
                     Toast.makeText(LoginPage.this, "Login Error", Toast.LENGTH_SHORT).show();
 
